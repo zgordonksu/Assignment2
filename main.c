@@ -18,6 +18,14 @@ int main() {
         printf("Failed to open the file\n");
         return 1;
     }
+    
+    // Get the output file
+    FILE *output = fopen("output.txt", "w");
+    if (output == NULL) {
+        printf("Failed to open the output file\n");
+        return 1;
+    }
+    
     // Read each line
     while (fgets(line, sizeof(line), fp)) {
         // Remove the newline that was causing some cases to be tested multiple times
@@ -59,12 +67,16 @@ int main() {
 
                 printf("Test %d: %s(%s) -> Expected: \"%s\", Got: \"%s\" [PASS]\n",
                 total, method, number, expected, out);
+                fprintf(output, "Test %d: %s(%s) -> Expected: \"%s\", Got: \"%s\" [PASS]\n",
+                total, method, number, expected, out);
             }
             else {
                 // The test failed
                 total++;
 
                 printf("Test %d: %s(%s) -> Expected: \"%s\", Got: \"%s\" [FAIL]\n",
+                total, method, number, expected, out);
+                fprintf(output, "Test %d: %s(%s) -> Expected: \"%s\", Got: \"%s\" [FAIL]\n",
                 total, method, number, expected, out);
             }
         }
@@ -98,6 +110,8 @@ int main() {
 
                 printf("Test %d: %s(%s) -> Expected: \"%s\", Got: \"%s\" [PASS]\n",
                 total, method, number, expected, out);
+                fprintf(output, "Test %d: %s(%s) -> Expected: \"%s\", Got: \"%s\" [PASS]\n",
+                total, method, number, expected, out);
             }
             else {
                 // The test failed
@@ -105,13 +119,17 @@ int main() {
 
                 printf("Test %d: %s(%s) -> Expected: \"%s\", Got: \"%s\" [FAIL]\n",
                 total, method, number, expected, out);
+                fprintf(output, "Test %d: %s(%s) -> Expected: \"%s\", Got: \"%s\" [FAIL]\n",
+                total, method, number, expected, out);
             }
         }
     }
     // Show the summary
     printf("Summary: %d/%d tests passed\n", passes, total);
+    fprintf(output, "Summary: %d/%d tests passed\n", passes, total);
 
-    // Close the file
+    // Close the files
     fclose(fp);
+    fclose(output);
     return 0;
 }
