@@ -18,7 +18,7 @@ oct_to_bin 345 011100101
 oct_to_bin 777 111111111
 
 # Edge cases
-oct_to_bin 0 0
+oct_to_bin 0 000
 oct_to_bin 1 001
 oct_to_bin 7 111
 

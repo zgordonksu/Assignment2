@@ -5,11 +5,11 @@
 
 void oct_to_bin(const char *oct, char *out) {
 
-    // Handle the zero case
-    if (strcmp(oct, "0") == 0) {
-        strcpy(out, "0");
-        return;
-    }
+    // // Handle the zero case
+    // if (strcmp(oct, "0") == 0) {
+    //     strcpy(out, "0");
+    //     return;
+    // }
     
     uint32_t pos = 0;
 
